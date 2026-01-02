@@ -1,12 +1,11 @@
-import useGeners from "../hooks/useGeners";
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import useGeners, { Gener } from "../hooks/useGeners";
 
 export const GenereLst = () => {
-  const { geners, error, isLoading } = useGeners();
+  const { data, error, isLoading } = useGeners();
 
   return (
     <ul>
-      {geners.map((genere) => (
+      {data.map((genere) => (
         <li>{genere.name}</li>
       ))}
     </ul>
