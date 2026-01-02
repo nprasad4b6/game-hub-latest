@@ -4,6 +4,7 @@ import "./App.css";
 import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import { GameGrid } from "./components/GameGrid";
+import { GenereLst } from "./components/GenereList";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,7 +21,7 @@ function App() {
       </GridItem>
 
       <GridItem area="aside" bg="gold" display={{ base: "none", lg: "block" }}>
-        Aside
+        <GenereLst></GenereLst>
       </GridItem>
 
       <GridItem area="main" bg="dodgerblue">
