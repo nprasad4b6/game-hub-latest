@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import apiClinet from "../services/api-clinet";
 import { CanceledError } from "axios";
 import useData from "./useData";
+import {Gener} from "./useGeners"
 
 export interface Platform {
   id: number;
@@ -19,7 +20,9 @@ export interface Game {
 
 
 
-export const useGames = () => useData<Game>("/games");
+export const useGames = (selectedGener: Gener | null) => useData<Game>("/games", {params: {
+  genres: selectedGener?.id
+}}, [ selectedGener?.id]);
    
 
 export default useGames;

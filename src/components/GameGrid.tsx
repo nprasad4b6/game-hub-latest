@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
-import apiClinet from "../services/api-clinet";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
+import { Gener } from "../hooks/useGeners";
 import { GameCard } from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 
-export const GameGrid = () => {
-  const { data, error, isLoading } = useGames();
+interface Props {
+  selectedGener: Gener | null;
+}
+
+export const GameGrid = ({ selectedGener }: Props) => {
+  const { data, error, isLoading } = useGames(selectedGener);
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>
@@ -16,13 +19,13 @@ export const GameGrid = () => {
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 3 }} spacing={3}>
         {isLoading &&
           skeletons.map((sk) => (
-            <GameCardContainer>
-              <GameCardSkeleton key={sk}></GameCardSkeleton>
+            <GameCardContainer key={sk}>
+              <GameCardSkeleton></GameCardSkeleton>
             </GameCardContainer>
           ))}
         {data.map((game) => (
-          <GameCardContainer>
-            <GameCard key={game.id} game={game}></GameCard>
+          <GameCardContainer key={game.id}>
+            <GameCard game={game}></GameCard>
           </GameCardContainer>
         ))}
       </SimpleGrid>
