@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import { GameGrid } from "./components/GameGrid";
 import { GenereLst } from "./components/GenereList";
 import useGeners, { Gener } from "./hooks/useGeners";
+import PlatformSelector from "./components/PlatformSelector";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -38,6 +39,7 @@ function App() {
       </GridItem>
 
       <GridItem area="main">
+        <PlatformSelector></PlatformSelector>
         <GameGrid selectedGener={selectedGenre} />
       </GridItem>
     </Grid>
