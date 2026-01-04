@@ -3,6 +3,7 @@ import apiClinet from "../services/api-clinet";
 import { CanceledError } from "axios";
 import useData from "./useData";
 import {Gener} from "./useGeners"
+import { GameQuery } from "../App";
 
 export interface Platform {
   id: number;
@@ -17,16 +18,19 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
   metacritic: number;
 }
+interface Props {
+  gameQuery: GameQuery;
+}
 
 
 
-export const useGames = (selectedGener: Gener | null, platformSelected: Platform | null) => useData<Game>("/games", 
+export const useGames = (gameQuery: GameQuery) => useData<Game>("/games", 
   {
 params: {
-  genres: selectedGener?.id, 
-  platforms: platformSelected?.id
+  genres: gameQuery.genre?.id, 
+  platforms: gameQuery.platform?.id
 }},
- [ selectedGener?.id, platformSelected?.id]);
+ [ gameQuery]);
    
 
 export default useGames;
